@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { SubCarModelPagePageRoutingModule } from './sub-car-model-page-routing.module';
 
 import { SubCarModelPagePage } from './sub-car-model-page.page';
+import { CarYearModelComponent } from '../../car-model-year-modal/car-year-model/car-year-model.component';
+import { CarSubModelComponent } from '../../car-model-year-modal/car-sub-model/car-sub-model.component';
 
 @NgModule({
   imports: [
@@ -15,6 +17,6 @@ import { SubCarModelPagePage } from './sub-car-model-page.page';
     IonicModule,
     SubCarModelPagePageRoutingModule
   ],
-  declarations: [SubCarModelPagePage]
+  declarations: [SubCarModelPagePage, CarYearModelComponent, CarSubModelComponent]
 })
 export class SubCarModelPagePageModule {}
