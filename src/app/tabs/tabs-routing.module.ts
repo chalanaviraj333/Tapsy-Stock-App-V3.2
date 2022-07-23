@@ -8,10 +8,6 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
-      },
-      {
         path: 'tab2',
         loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
       },
@@ -27,14 +23,10 @@ const routes: Routes = [
         path: 'more',
         loadChildren: () => import('../more/more.module').then( m => m.MorePageModule)
       },
-      {
-        path: 'tab1/model/:brandId',
-        loadChildren: () => import('../model/model.module').then( m => m.ModelPageModule)
-      },
-      {
-        path: 'tab1/year/:selectedBrand/:selectedModel/:startyear/:endyear',
-        loadChildren: () => import('../year/year.module').then( m => m.YearPageModule)
-      },
+      // {
+      //   path: 'tab1/year/:selectedBrand/:selectedModel/:startyear/:endyear',
+      //   loadChildren: () => import('../year/year.module').then( m => m.YearPageModule)
+      // },
       {
         path: 'tab1/result/:selectedBrand/:selectedModel/:selectedYear/:startyear/:endyear',
         loadChildren: () => import('../result/result.module').then( m => m.ResultPageModule)
@@ -52,15 +44,27 @@ const routes: Routes = [
         loadChildren: () => import('../garage-remotes/all-garage-remotes/all-garage-remotes.module').then( m => m.AllGarageRemotesPageModule)
       },
       {
+        path: 'car-brand-page',
+        loadChildren: () => import('../car-tab/car-brands-page/car-brand-page/car-brand-page.module').then( m => m.CarBrandPagePageModule)
+      },
+      {
+        path: 'car-brand-page/car-model-page/:brandId',
+        loadChildren: () => import('../car-tab/car-model-page/car-model-page/car-model-page.module').then( m => m.CarModelPagePageModule)
+      },
+      {
+        path: 'car-brand-page/car-model-page/car-sub-model-page/:selectedBrand/:selectedModel/:startyear/:endyear',
+        loadChildren: () => import('../car-tab/car-sub-model-page/sub-car-model-page/sub-car-model-page.module').then( m => m.SubCarModelPagePageModule)
+      },
+      {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/car-brand-page',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/car-brand-page',
     pathMatch: 'full'
   }
 ];

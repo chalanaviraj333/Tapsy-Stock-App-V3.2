@@ -1,3 +1,6 @@
+#submodelImageID {
+    border-radius: 10px;
+}
 
 #errorContent {
     text-align: center;
@@ -10,7 +13,7 @@
     font-weight: 700;
     font-style: normal;
     font-size: 12px;
-    margin-left: 25px;
+    // margin-left: 25px;
 
 }
 
@@ -19,7 +22,7 @@
     font-weight: 700;
     font-style: normal;
     font-size: 30px;
-    margin-left: 20px;
+    // margin-left: 20px;
 }
 
 #allprodsslideID {
@@ -32,4 +35,12 @@
 
 #modelImageID {
     border-radius: 10px;
+}
+
+ion-card {
+    height: 100% !important;
+}
+
+ion-badge {
+    margin-top: 5px;
 }

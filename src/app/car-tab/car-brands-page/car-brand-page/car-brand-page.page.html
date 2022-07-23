@@ -1,6 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title>Car Brands</ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot="icon-only" (click)="onclickCopy()">
+        <ion-icon name="copy"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
   <ion-toolbar color="primary">
     <ion-searchbar #search debounce="500" (ionChange)="_ionChange($event)" placeholder="Enter Brand" showCancelButton="never" animated></ion-searchbar>
@@ -11,7 +16,7 @@
 <ion-content [scrollEvents]="true" (ionScrollStart)="logScrollStart()">
 
   <ion-list>
-    <ion-item-sliding *ngFor="let carbrand of searchedItem">
+    <ion-item-sliding *ngFor="let carbrand of this.databaseService.searchCarBrands">
       <ion-item-options side="end">
         <ion-item-option id="allprodsslideID" class="ion-text-center" (click)="onClickViewBrandProducts(carbrand.name)">All <br> Products</ion-item-option>
       </ion-item-options>

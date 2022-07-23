@@ -8,6 +8,9 @@ import { Storage } from '@capacitor/storage';
 import { Remote } from "./remote";
 import { Carmodel } from "./carmodel";
 import { RemoteShell } from "./remote-shell";
+import { Carbrand } from "./carbrand";
+import { CarModel } from "./interfaces/car-model";
+import { CarSubModel } from "./interfaces/car-sub-model";
 
 export interface selectedData {
   selectedCategory: string;
@@ -21,6 +24,24 @@ export interface selectedData {
   providedIn: "root",
 })
 export class DatabaseServiceService {
+
+  //
+  public isFetching: boolean = true;
+
+  // all car brands array and search car brand array
+  private allCarBrands: Array<Carbrand> = [];
+  public searchCarBrands: Array<Carbrand> = [];
+
+  // all car models array and search car model array
+  private allCarModels: Array<CarModel> = [];
+  public searchCarModels: Array<CarModel> = [];
+
+  // all car sub models array and search car model array
+  private allCarSubModels: Array<CarSubModel> = [];
+  public searchCarSubModels: Array<CarSubModel> = [];
+
+
+  // 
   public carNotesforCar: Array<CarNote> = [];
 
   public allremotes: Array<Remote> = [];
@@ -45,6 +66,189 @@ export class DatabaseServiceService {
     private navParamService: NavparamService,
     private modalController: ModalController
   ) { }
+
+
+  // <---- all database service related to tab 1 ---->
+
+  // get all carbrands from database
+  getAllCarBrands() {
+    if (this.allCarBrands.length == 0) {
+      this.http.get<{ [key: string]: Carbrand }>('https://tapsy-stock-app-v3-database-default-rtdb.firebaseio.com/all-car-brands.json')
+      .subscribe(resData => {
+        for (const key in resData) {
+          if (resData.hasOwnProperty(key)){
+              this.allCarBrands.push({key, name: resData[key].name, icon: resData[key].icon })
+              this.allCarBrands.sort((a, b) => (a.name > b.name) ? 1 : -1)
+          }           
+        } 
+        this.searchCarBrands = this.allCarBrands;      
+    });
+    } 
+  }
+
+  // perform search car brand on tab 1 page/car-brand page
+  performSearchCarBrand(val: string) {
+    this.searchCarBrands = this.allCarBrands;
+
+    if (val && val.trim() != '') {
+      this.searchCarBrands = this.searchCarBrands.filter((item: any) => {
+        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+    }
+  }
+
+  // duplicate car brands to another database
+  // copyCarBrandsinDatabase() {
+  //   this.allCarBrands.forEach(carbrand => {
+  //     this.http
+  //     .post(
+  //       "https://tapsy-stock-app-v3-database-default-rtdb.firebaseio.com/all-car-brands.json",
+  //       { ...carbrand, key: null }
+  //     )
+  //     .subscribe((resData) => {
+  //       console.log(resData);
+  //     });
+  //   });
+  // }
+
+
+
+  // get all car models from the database
+  getAllCarModels(selectedCarBrand: string) {
+    this.isFetching = true;
+    this.allCarModels = [];
+
+      this.http
+      .get<{ [key: string]: CarModel }>(
+        "https://tapsy-stock-app-v3-database-default-rtdb.firebaseio.com/all-car-models.json"
+      )
+      .subscribe((resData) => {
+        for (const key in resData) {
+          if (resData.hasOwnProperty(key)) {
+            if (resData[key].brand == selectedCarBrand) {
+              this.allCarModels.push({
+                key,
+                brand: resData[key].brand,
+                model: resData[key].model,
+                startyear: resData[key].startyear,
+                endyear: resData[key].endyear,
+                icon: resData[key].icon,
+                show: resData[key].show
+              });
+              this.allCarModels.sort((a, b) => (a.model > b.model ? 1 : -1));
+              this.isFetching = false;
+            }
+          }
+        }
+
+        this.searchCarModels = this.allCarModels;
+
+        if (this.allCarModels.length == 0) {
+          this.isFetching = false;
+        }
+        
+      });
+  }
+
+    // get all car models from the database
+    // getAllCarModelsWithoutFilter() {
+    //   this.isFetching = true;
+    //   this.allCarModels = [];
+  
+    //     this.http
+    //     .get<{ [key: string]: CarModel }>(
+    //       "https://tapsystock-a6450-default-rtdb.firebaseio.com/car-model.json"
+    //     )
+    //     .subscribe((resData) => {
+    //       for (const key in resData) {
+    //         if (resData.hasOwnProperty(key)) {
+    //             this.allCarModels.push({
+    //               key,
+    //               brand: resData[key].brand,
+    //               model: resData[key].model,
+    //               startyear: resData[key].startyear,
+    //               endyear: resData[key].endyear,
+    //               icon: resData[key].icon,
+    //               show: resData[key].show
+    //             });
+    //             this.allCarModels.sort((a, b) => (a.model > b.model ? 1 : -1));
+    //             console.log(this.allCarModels);
+    //             this.isFetching = false;
+    //           }
+    //       }
+          
+    //     });
+    // }
+
+  // perform search on car model page
+  perfromSearchCarModel(val: string) {
+    this.searchCarModels = this.allCarModels;
+
+    if (val && val.trim() != "") {
+      this.searchCarModels = this.searchCarModels.filter((item: any) => {
+        return item.model.toLowerCase().indexOf(val.toLowerCase()) > -1;
+      });
+    }
+  }
+
+
+  // get all car sub models from database
+  getAllCarSubModels(selectedBrand: string, selectedModel: string) {
+    this.isFetching = true;
+    this.allCarSubModels = [];
+
+      this.http
+      .get<{ [key: string]: CarSubModel }>(
+        "https://tapsy-stock-app-v3-database-default-rtdb.firebaseio.com/all-car-sub-models.json"
+      )
+      .subscribe((resData) => {
+        for (const key in resData) {
+          if (resData.hasOwnProperty(key)) {
+            if (resData[key].brand == selectedBrand && resData[key].model == selectedModel) {
+              this.allCarSubModels.push({
+                key,
+                brand: resData[key].brand,
+                model: resData[key].model,
+                submodel: resData[key].submodel,
+                typeofignition: resData[key].typeofignition,
+                icon: resData[key].icon,
+                startyear: resData[key].startyear,
+                endyear: resData[key].endyear,
+                compatibleremotes: resData[key].compatibleremotes,
+                compatibleremoteshells: resData[key].compatibleremoteshells
+              });
+              this.allCarSubModels.sort((a, b) => (a.startyear > b.startyear ? 1 : -1));
+              this.isFetching = false;
+            }
+          }
+        }
+
+        this.searchCarSubModels = this.allCarSubModels;
+
+        if (this.allCarSubModels.length == 0) {
+          this.isFetching = false;
+        }
+        
+      });
+  }
+
+
+    // duplicate car brands to another database
+    // copyCarModelssinDatabase() {
+    //   this.allCarModels.forEach(carmodel => {
+    //     this.http
+    //     .post(
+    //       "https://tapsy-stock-app-v3-database-default-rtdb.firebaseio.com/all-car-models.json",
+    //       { ...carmodel, show: true, key: null }
+    //     )
+    //     .subscribe((resData) => {
+    //       console.log(resData);
+    //     });
+    //   });
+    // }
+
+  // <---- end of tab1/car-brand page related database serivces ---->
+
 
   getBrandedProducts(selectedBrand: string) {
     this.brandedProducts = [];
