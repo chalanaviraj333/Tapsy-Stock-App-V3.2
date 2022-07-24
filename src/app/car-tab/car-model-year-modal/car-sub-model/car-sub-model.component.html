@@ -8,7 +8,7 @@
 <ion-grid>
   <ion-row>
     <ion-col size="6" *ngFor="let submodel of this.databaseService.searchCarSubModels">
-      <ion-card (click)="onClick(x = submodel.model, startyear = submodel.startyear, endyear = submodel.endyear)" class="ion-activatable ripple-parent ion-no-margin">
+      <ion-card (click)="onClickSubModel(submodel)" class="ion-activatable ripple-parent ion-no-margin">
         <ion-card-header>
           <div class="ion-text-center">
             <img id="submodelImageID" src="{{submodel.icon}}" height="80" />

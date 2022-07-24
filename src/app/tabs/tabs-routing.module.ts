@@ -24,13 +24,9 @@ const routes: Routes = [
         loadChildren: () => import('../more/more.module').then( m => m.MorePageModule)
       },
       // {
-      //   path: 'tab1/year/:selectedBrand/:selectedModel/:startyear/:endyear',
-      //   loadChildren: () => import('../year/year.module').then( m => m.YearPageModule)
+      //   path: 'tab1/result/:selectedBrand/:selectedModel/:selectedYear/:startyear/:endyear',
+      //   loadChildren: () => import('../result/result.module').then( m => m.ResultPageModule)
       // },
-      {
-        path: 'tab1/result/:selectedBrand/:selectedModel/:selectedYear/:startyear/:endyear',
-        loadChildren: () => import('../result/result.module').then( m => m.ResultPageModule)
-      },
       {
         path: 'low-stock-tab',
         loadChildren: () => import('../low-stock-tab/low-stock-tab.module').then( m => m.LowStockTabPageModule)
@@ -54,6 +50,14 @@ const routes: Routes = [
       {
         path: 'car-brand-page/car-model-page/car-sub-model-page/:selectedBrand/:selectedModel/:startyear/:endyear',
         loadChildren: () => import('../car-tab/car-sub-model-page/sub-car-model-page/sub-car-model-page.module').then( m => m.SubCarModelPagePageModule)
+      },
+      {
+        path: 'car-brand-page/car-model-page/car-sub-model-page/result-page/:selectedBrand/:selectedModel/:selectedYear/:startyear/:endyear',
+        loadChildren: () => import('../car-tab/result-page/result-page/result-page.module').then( m => m.ResultPagePageModule)
+      },
+      {
+        path: 'car-brand-page/car-model-page/car-sub-model-page/result-sub-model/:startyear/:endyear',
+        loadChildren: () => import('../car-tab/result-sub-model/result-sub-model/result-sub-model.module').then( m => m.ResultSubModelPageModule)
       },
       {
         path: '',

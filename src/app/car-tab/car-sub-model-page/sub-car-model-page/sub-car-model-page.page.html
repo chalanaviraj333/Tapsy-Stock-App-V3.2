@@ -21,6 +21,6 @@
 <ion-content [scrollEvents]="true">
 
   <app-car-sub-model *ngIf="turntomodels"></app-car-sub-model>
-  <app-car-year-model *ngIf="turntoyear"></app-car-year-model>
+  <app-car-year-model *ngIf="!turntomodels"></app-car-year-model>
 
 </ion-content>

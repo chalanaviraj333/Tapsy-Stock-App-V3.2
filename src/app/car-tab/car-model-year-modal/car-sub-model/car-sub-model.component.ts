@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { DatabaseServiceService } from 'src/app/database-service.service';
+import { CarSubModel } from 'src/app/interfaces/car-sub-model';
 
 @Component({
   selector: 'app-car-sub-model',
@@ -11,10 +12,9 @@ export class CarSubModelComponent implements OnInit {
 
   public selectedBrand: string;
   public selectedModel: string;
+  private modelStartYear: string;
+  private modelEndYear: string;
 
-  // 
-  public turntomodels: boolean = true;
-  public turntoyear: boolean = false;
 
   constructor(
     private router: Router,
@@ -33,6 +33,8 @@ export class CarSubModelComponent implements OnInit {
       }
       this.selectedBrand = paramMap.get("selectedBrand");
       this.selectedModel = paramMap.get("selectedModel");
+      this.modelStartYear = paramMap.get("startyear");
+      this.modelEndYear = paramMap.get("endyear");
     });
   }
 
@@ -41,29 +43,22 @@ export class CarSubModelComponent implements OnInit {
     this.databaseService.getAllCarSubModels(this.selectedBrand, this.selectedModel);
   }
 
-  onClick(x, startyear, endyear) {
-    const selectedModel = x;
+  onClickSubModel(submodel: CarSubModel) {
 
-    this.router.navigateByUrl(
-      "tabs/tab1/year/" +
-        this.selectedBrand +
-        "/" +
-        selectedModel +
-        "/" +
-        startyear +
-        "/" +
-        endyear
-    );
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        "data": JSON.stringify(submodel)
+      }
+    }
+
+    this.router.navigate(
+       ["tabs/car-brand-page/car-model-page/car-sub-model-page/result-sub-model/" + this.modelStartYear + '/' + this.modelEndYear],
+        navigationExtras);
   }
 
   _ionChange(event) {
     const val = event.target.value;
     this.databaseService.perfromSearchCarModel(val);
-  }
-
-  onChangeType(event) {
-    this.turntoyear = !this.turntoyear;
-    this.turntomodels = !this.turntomodels;
   }
 
 }

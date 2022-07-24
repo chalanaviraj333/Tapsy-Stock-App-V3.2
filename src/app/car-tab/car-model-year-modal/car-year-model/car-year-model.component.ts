@@ -126,7 +126,7 @@ export class CarYearModelComponent implements OnInit {
     const selectedYear = year;
 
     this.router.navigateByUrl(
-      "tabs/tab1/result/" +
+      "tabs/car-brand-page/car-model-page/car-sub-model-page/result-page/" +
         this.selectedBrand +
         "/" +
         this.selectedModel +

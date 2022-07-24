@@ -14,7 +14,6 @@ export class SubCarModelPagePage implements OnInit {
 
   // 
   public turntomodels: boolean = true;
-  public turntoyear: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -40,7 +39,6 @@ export class SubCarModelPagePage implements OnInit {
   }
 
   onChangeType(event) {
-    this.turntoyear = !this.turntoyear;
     this.turntomodels = !this.turntomodels;
   }
 
