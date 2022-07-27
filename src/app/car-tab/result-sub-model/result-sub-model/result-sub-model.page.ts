@@ -46,11 +46,17 @@ export class ResultSubModelPage implements OnInit {
   }
 
   ngOnInit() {
+    this.databaseService.getAllCarSubModels(this.selectedSubModel.brand, this.selectedSubModel.model);
     
   }
 
   onClickItemModal(selectedtapsycode: string) {
 
+  }
+
+  onCLickAddVerifiedRemote(selectedsubmodelbrand: string) {
+    const subModelKey: string = this.selectedSubModel.key
+    this.modelService.onClickAddVerifiedRemote(selectedsubmodelbrand, subModelKey);
   }
 
 }

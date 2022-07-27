@@ -40,6 +40,8 @@ export class DatabaseServiceService {
   private allCarSubModels: Array<CarSubModel> = [];
   public searchCarSubModels: Array<CarSubModel> = [];
 
+  // get products related to brand
+  public byBrandBasedRemotes: Array<Remote> = [];
 
   // 
   public carNotesforCar: Array<CarNote> = [];
@@ -247,6 +249,78 @@ export class DatabaseServiceService {
     //   });
     // }
 
+
+    // get all remotes based on car brand
+    getAllProductsBasedonBrand(selectedsubmodelbrand: string) {
+      this.http
+      .get<{ [key: string]: Remote }>(
+        "https://tapsystock-a6450-default-rtdb.firebaseio.com/remotes.json"
+      )
+      .subscribe((resData) => {
+        for (const key in resData) {
+          if (resData.hasOwnProperty(key)) {
+            if (resData[key].compitablebrands !== undefined && resData[key].compitablebrands.find((i) => i === selectedsubmodelbrand)){
+              this.byBrandBasedRemotes.push({
+                key,
+                tapsycode: resData[key].tapsycode,
+                boxnumber: resData[key].boxnumber,
+                shell: resData[key].shell,
+                qtyavailable: resData[key].qtyavailable,
+                inbuildchip: resData[key].inbuildchip,
+                inbuildblade: resData[key].inbuildblade,
+                battery: resData[key].battery,
+                buttons: resData[key].buttons,
+                costperitem: resData[key].costperitem,
+                frequency: resData[key].frequency,
+                remotetype: resData[key].remotetype,
+                productType: resData[key].productType,
+                image: resData[key].image,
+                notes: resData[key].notes,
+                compitablecars: resData[key].compitablecars,
+                compitablebrands: resData[key].compitablebrands,
+                recentAddedQuantity: resData[key].recentAddedQuantity,
+                recentmoreStockAddDate: resData[key].recentmoreStockAddDate,
+                totalSale: resData[key].totalSale,
+                moreStock: resData[key].moreStock
+              });
+              
+            }
+          }
+        }
+      });
+
+    }
+
+    // add verified remote to sub model
+    addVerifiedRemotetoSubModel(remote: Remote, subModelKey: string) {
+      const subModelCar : CarSubModel = this.allCarSubModels.find((i) => i.key === subModelKey);
+
+      if (subModelCar.compatibleremotes == undefined) {
+        subModelCar.compatibleremotes = [];
+        subModelCar.compatibleremotes.push(remote);
+      }
+      else {
+        subModelCar.compatibleremotes.push(remote);
+      }
+      
+      this.http
+        .put(
+          `https://tapsy-stock-app-v3-database-default-rtdb.firebaseio.com/all-car-sub-models/${subModelKey}.json`,
+          { ...subModelCar, key: null }
+        )
+        .subscribe((resData) => {
+          const message: string = remote.shell + remote.boxnumber;
+          this.presentToastAddRemote(message);
+        });
+    }
+
+
+    // <--- Common database requests for all pages --->
+
+    // get all remotes from database
+    
+    //  <---END Common database requests for all pages --->
+
   // <---- end of tab1/car-brand page related database serivces ---->
 
 
@@ -440,6 +514,16 @@ export class DatabaseServiceService {
   async presentToastAddNote() {
     const toast = await this.toastController.create({
       message: "Note Added Successfully.",
+      duration: 2000,
+      position: "top",
+      color: "dark",
+    });
+    toast.present();
+  }
+
+  async presentToastAddRemote(message: string) {
+    const toast = await this.toastController.create({
+      message: message + " Added Successfully.",
       duration: 2000,
       position: "top",
       color: "dark",

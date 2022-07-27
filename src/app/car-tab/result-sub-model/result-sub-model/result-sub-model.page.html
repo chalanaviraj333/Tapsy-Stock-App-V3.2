@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card color="light">
+  <ion-card id="carCard" color="light">
     <div class="img-wrapper">
       <img src="{{selectedSubModel.icon}}" />
     </div>
@@ -68,19 +68,9 @@
             <ion-text color="primary">
               <ion-label color="dark" id="remotesTitleID">Remotes</ion-label>
             </ion-text>
-            <ion-label class="ion-text-lowercase">
-              compatible for {{selectedSubModel.brand}}
-              {{selectedSubModel.model}} {{selectedSubModel.startyear}}
-            </ion-label>
           </ion-label>
-          <!-- <ion-badge>{{compitableremotes.length}}</ion-badge> -->
+          <ion-button (click)="onCLickAddVerifiedRemote(selectedSubModel.brand)">Add Remote</ion-button>
         </ion-item>
-        <div id="errorContent">
-          <!-- <ion-chip *ngIf="isFetchingRemotes" color="danger">
-            <ion-icon [name]="iconerrorremotes" color="danger"></ion-icon>
-            <ion-label>{{printerrorremotes}}</ion-label>
-          </ion-chip> -->
-        </div>
       </ion-col>
     </ion-row>
     <ion-row class="ion-nowrap">

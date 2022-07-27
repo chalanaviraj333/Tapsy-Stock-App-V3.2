@@ -26,6 +26,7 @@ export class DatabaseServiceTabTwoService {
   constructor(private http: HttpClient) { }
 
   getAllRemotes() {
+    if (this.allRemotes.length == 0) {
 
     this.allRemotes = [];
     this.filterRemotes = [];
@@ -103,6 +104,8 @@ export class DatabaseServiceTabTwoService {
 
       
       this.filterRemotes = this.allRemotes;
+    }
+    
   }
 
   filterProducts(selectedData: selectedData) {
