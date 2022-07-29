@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AddVerifiedRemotePage } from './add-verified-remote.page';
+import { AddVerifiedProductPage } from './add-verified-product.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: AddVerifiedRemotePage
+    component: AddVerifiedProductPage
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AddVerifiedRemotePageRoutingModule {}
+export class AddVerifiedProductPageRoutingModule {}

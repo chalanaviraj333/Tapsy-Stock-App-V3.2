@@ -5,8 +5,6 @@ import { IonRouterOutlet } from '@ionic/angular';
 import { DatabaseServiceService } from 'src/app/services/database-service.service';
 import { CarSubModel } from 'src/app/interfaces/car-sub-model';
 import { ModalserviceService } from 'src/app/modalservice.service';
-import { Remote } from 'src/app/remote';
-import { RemoteShell } from 'src/app/remote-shell';
 
 @Component({
   selector: 'app-result-sub-model',
@@ -55,8 +53,15 @@ export class ResultSubModelPage implements OnInit {
   }
 
   onCLickAddVerifiedRemote(selectedsubmodelbrand: string) {
-    const subModelKey: string = this.selectedSubModel.key
-    this.modelService.onClickAddVerifiedRemote(selectedsubmodelbrand, subModelKey);
+    const subModelKey: string = this.selectedSubModel.key;
+    const buttontype: string = 'addremote';
+    this.modelService.onClickAddVerifiedProduct(selectedsubmodelbrand, subModelKey, buttontype);
+  }
+
+  onClickAddVerifiedRemoteShell(selectedsubmodelbrand: string) {
+    const subModelKey: string = this.selectedSubModel.key;
+    const buttontype: string = 'addremoteshell';
+    this.modelService.onClickAddVerifiedProduct(selectedsubmodelbrand, subModelKey, buttontype);
   }
 
 }

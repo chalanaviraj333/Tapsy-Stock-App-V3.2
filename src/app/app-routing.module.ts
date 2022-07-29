@@ -37,9 +37,10 @@ const routes: Routes = [
   {
     path: 'view-garage-remote-details',
     loadChildren: () => import('./view-garage-remote-details/view-garage-remote-details.module').then( m => m.ViewGarageRemoteDetailsPageModule)
-  },  {
-    path: 'add-verified-remote',
-    loadChildren: () => import('./car-tab/car-brands-all-modals/add-verified-remote/add-verified-remote/add-verified-remote.module').then( m => m.AddVerifiedRemotePageModule)
+  },
+  {
+    path: 'add-verified-product',
+    loadChildren: () => import('./car-tab/car-brands-all-modals/add-verified-product/add-verified-product/add-verified-product.module').then( m => m.AddVerifiedProductPageModule)
   },
 
 

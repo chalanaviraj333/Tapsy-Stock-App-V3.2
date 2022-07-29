@@ -41,7 +41,7 @@ export class DatabaseServiceService {
   public searchCarSubModels: Array<CarSubModel> = [];
 
   // get products related to brand
-  public byBrandBasedRemotes: Array<Remote> = [];
+  public byBrandBasedProducts: Array<any> = [];
 
   // 
   public carNotesforCar: Array<CarNote> = [];
@@ -234,25 +234,13 @@ export class DatabaseServiceService {
       });
   }
 
-
-    // duplicate car brands to another database
-    // copyCarModelssinDatabase() {
-    //   this.allCarModels.forEach(carmodel => {
-    //     this.http
-    //     .post(
-    //       "https://tapsy-stock-app-v3-database-default-rtdb.firebaseio.com/all-car-models.json",
-    //       { ...carmodel, show: true, key: null }
-    //     )
-    //     .subscribe((resData) => {
-    //       console.log(resData);
-    //     });
-    //   });
-    // }
-
-
     // get all remotes based on car brand
-    getAllProductsBasedonBrand(selectedsubmodelbrand: string) {
-      this.http
+    getAllProductsBasedonBrand(selectedsubmodelbrand: string, buttontype: string) {
+      this.byBrandBasedProducts = []
+      console.log(buttontype)
+
+      if (buttontype == 'addremote') {
+        this.http
       .get<{ [key: string]: Remote }>(
         "https://tapsystock-a6450-default-rtdb.firebaseio.com/remotes.json"
       )
@@ -260,47 +248,54 @@ export class DatabaseServiceService {
         for (const key in resData) {
           if (resData.hasOwnProperty(key)) {
             if (resData[key].compitablebrands !== undefined && resData[key].compitablebrands.find((i) => i === selectedsubmodelbrand)){
-              this.byBrandBasedRemotes.push({
-                key,
-                tapsycode: resData[key].tapsycode,
-                boxnumber: resData[key].boxnumber,
-                shell: resData[key].shell,
-                qtyavailable: resData[key].qtyavailable,
-                inbuildchip: resData[key].inbuildchip,
-                inbuildblade: resData[key].inbuildblade,
-                battery: resData[key].battery,
-                buttons: resData[key].buttons,
-                costperitem: resData[key].costperitem,
-                frequency: resData[key].frequency,
-                remotetype: resData[key].remotetype,
-                productType: resData[key].productType,
-                image: resData[key].image,
-                notes: resData[key].notes,
-                compitablecars: resData[key].compitablecars,
-                compitablebrands: resData[key].compitablebrands,
-                recentAddedQuantity: resData[key].recentAddedQuantity,
-                recentmoreStockAddDate: resData[key].recentmoreStockAddDate,
-                totalSale: resData[key].totalSale,
-                moreStock: resData[key].moreStock
-              });
-              
+              this.byBrandBasedProducts.push({key, ...resData[key]});
             }
+            this.byBrandBasedProducts.sort((a, b) => (a.shell > b.shell ? 1 : -1));
           }
         }
       });
+      }
+
+      else if (buttontype == 'addremoteshell') {
+        this.http
+      .get<{ [key: string]: RemoteShell }>(
+        "https://tapsystock-a6450-default-rtdb.firebaseio.com/remote-shells.json"
+      )
+      .subscribe((resData) => {
+        for (const key in resData) {
+          if (resData.hasOwnProperty(key)) {
+            if (resData[key].compitablebrands !== undefined && resData[key].compitablebrands.find((i) => i === selectedsubmodelbrand)){
+              this.byBrandBasedProducts.push({key, ...resData[key]});
+            }
+            this.byBrandBasedProducts.sort((a, b) => (a.shell > b.shell ? 1 : -1));
+          }
+        }
+      });
+      }
 
     }
 
     // add verified remote to sub model
-    addVerifiedRemotetoSubModel(remote: Remote, subModelKey: string) {
+    addVerifiedProductoSubModel(carproduct: any, subModelKey: string, buttontype: string) {
       const subModelCar : CarSubModel = this.allCarSubModels.find((i) => i.key === subModelKey);
 
-      if (subModelCar.compatibleremotes == undefined) {
-        subModelCar.compatibleremotes = [];
-        subModelCar.compatibleremotes.push(remote);
+      if (buttontype == 'addremote') {
+        if (subModelCar.compatibleremotes == undefined) {
+          subModelCar.compatibleremotes = [];
+          subModelCar.compatibleremotes.push(carproduct);
+        }
+        else {
+          subModelCar.compatibleremotes.push(carproduct);
+        }
       }
-      else {
-        subModelCar.compatibleremotes.push(remote);
+      else if (buttontype == 'addremoteshell') {
+        if (subModelCar.compatibleremoteshells == undefined) {
+          subModelCar.compatibleremoteshells = [];
+          subModelCar.compatibleremoteshells.push(carproduct);
+        }
+        else {
+          subModelCar.compatibleremoteshells.push(carproduct);
+        }
       }
       
       this.http
@@ -309,7 +304,7 @@ export class DatabaseServiceService {
           { ...subModelCar, key: null }
         )
         .subscribe((resData) => {
-          const message: string = remote.shell + remote.boxnumber;
+          const message: string = carproduct.shell + carproduct.boxnumber;
           this.presentToastAddRemote(message);
         });
     }

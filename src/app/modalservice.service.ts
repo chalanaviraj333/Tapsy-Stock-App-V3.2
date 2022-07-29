@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AddnotesPage } from './addnotes/addnotes.page';
-import { AddVerifiedRemotePage } from './car-tab/car-brands-all-modals/add-verified-remote/add-verified-remote/add-verified-remote.page';
+import { AddVerifiedProductPage } from './car-tab/car-brands-all-modals/add-verified-product/add-verified-product/add-verified-product.page';
 import { FilterPage } from './filter/filter.page';
 import { FiltertabthreePagePage } from './filtertabthree-page/filtertabthree-page.page';
 import { FiltertabtwopagePage } from './filtertabtwopage/filtertabtwopage.page';
@@ -109,12 +109,13 @@ export class ModalserviceService {
     return await modal.present();
   }
 
-  async onClickAddVerifiedRemote(selectedsubmodelbrand: string, subModelKey: string) {
+  async onClickAddVerifiedProduct(selectedsubmodelbrand: string, subModelKey: string, buttontype: string) {
     const modal = await this.modalController.create({
-      component: AddVerifiedRemotePage,
+      component: AddVerifiedProductPage,
       componentProps: {
         "selectedsubmodelbrand": selectedsubmodelbrand,
-        "subModelKey": subModelKey
+        "subModelKey": subModelKey,
+        "buttontype": buttontype
       },
       cssClass: 'view-Remote-Details-class',
       swipeToClose: true,
