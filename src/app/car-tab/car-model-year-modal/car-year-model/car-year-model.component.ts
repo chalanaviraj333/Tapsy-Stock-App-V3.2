@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavparamService } from 'src/app/navparam.service';
+import { NavparamService } from 'src/app/services/navparam.service';
 import { Remote } from 'src/app/remote';
 
 interface Year {

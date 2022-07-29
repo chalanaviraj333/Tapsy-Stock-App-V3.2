@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonContent, IonSearchbar } from '@ionic/angular';
-import { DatabaseServiceService } from 'src/app/database-service.service';
+import { DatabaseServiceService } from 'src/app/services/database-service.service';
 import { MainModalViewServiceService } from 'src/app/main-modal-view-service.service';
 
 @Component({

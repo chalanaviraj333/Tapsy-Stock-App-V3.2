@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { DatabaseServiceService } from '../database-service.service';
+import { DatabaseServiceService } from '../services/database-service.service';
 
 export interface selectedData {
   selectedCategory: string;

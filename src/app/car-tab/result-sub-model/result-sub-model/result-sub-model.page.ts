@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IonRouterOutlet } from '@ionic/angular';
-import { DatabaseServiceService } from 'src/app/database-service.service';
+import { DatabaseServiceService } from 'src/app/services/database-service.service';
 import { CarSubModel } from 'src/app/interfaces/car-sub-model';
 import { ModalserviceService } from 'src/app/modalservice.service';
 import { Remote } from 'src/app/remote';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatabaseServiceService } from '../database-service.service';
+import { DatabaseServiceService } from '../services/database-service.service';
 import { Storage } from '@capacitor/storage';
 import { DatabaseServiceTabTwoService } from '../database-service-tab-two.service';
 import { ModalserviceService } from '../modalservice.service';

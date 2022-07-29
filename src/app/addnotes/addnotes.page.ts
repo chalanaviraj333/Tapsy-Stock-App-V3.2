@@ -3,7 +3,7 @@ import { ModalController } from "@ionic/angular";
 
 import { NgForm } from "@angular/forms";
 import { SelectedCar } from "../selected-car";
-import { DatabaseServiceService } from "../database-service.service";
+import { DatabaseServiceService } from "../services/database-service.service";
 import { CarNote } from "../car-note";
 import { Storage } from '@capacitor/storage';
 

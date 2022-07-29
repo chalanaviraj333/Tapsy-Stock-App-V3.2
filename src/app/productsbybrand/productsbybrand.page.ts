@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { DatabaseServiceService } from '../database-service.service';
+import { DatabaseServiceService } from '../services/database-service.service';
 import { ModalserviceService } from '../modalservice.service';
 
 

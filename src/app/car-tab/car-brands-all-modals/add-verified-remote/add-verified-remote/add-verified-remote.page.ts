@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DatabaseServiceService } from 'src/app/database-service.service';
+import { DatabaseServiceService } from 'src/app/services/database-service.service';
 import { Remote } from 'src/app/remote';
 
 @Component({

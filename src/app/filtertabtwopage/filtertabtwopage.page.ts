@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { DatabaseServiceTabTwoService } from '../database-service-tab-two.service';
-import { selectedData } from '../database-service.service';
+import { selectedData } from '../services/database-service.service';
 
 @Component({
   selector: 'app-filtertabtwopage',

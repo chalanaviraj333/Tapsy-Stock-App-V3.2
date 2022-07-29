@@ -5,7 +5,7 @@ import { Remote } from "../remote";
 import { ModalserviceService } from "../modalservice.service";
 import { RemoteShell } from "../remote-shell"
 import { SelectedCar } from "../selected-car";
-import { DatabaseServiceService } from "../database-service.service";
+import { DatabaseServiceService } from "../services/database-service.service";
 import { IonRouterOutlet } from "@ionic/angular";
 
 interface Car {

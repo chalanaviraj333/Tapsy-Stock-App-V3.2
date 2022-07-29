@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { DatabaseServiceService } from 'src/app/database-service.service';
+import { DatabaseServiceService } from 'src/app/services/database-service.service';
 import { CarSubModel } from 'src/app/interfaces/car-sub-model';
 
 @Component({

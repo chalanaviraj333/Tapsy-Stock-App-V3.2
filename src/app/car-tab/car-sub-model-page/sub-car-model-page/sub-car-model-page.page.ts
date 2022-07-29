@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DatabaseServiceService } from 'src/app/database-service.service';
+import { DatabaseServiceService } from 'src/app/services/database-service.service';
 
 @Component({
   selector: 'app-sub-car-model-page',

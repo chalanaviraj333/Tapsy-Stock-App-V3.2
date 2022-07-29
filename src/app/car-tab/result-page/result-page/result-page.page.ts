@@ -6,7 +6,7 @@ import { SelectedCar } from "src/app/selected-car";
 import { Remote } from "src/app/remote";
 import { RemoteShell } from "src/app/remote-shell";
 import { ModalserviceService } from "src/app/modalservice.service";
-import { DatabaseServiceService } from "src/app/database-service.service";
+import { DatabaseServiceService } from "src/app/services/database-service.service";
 
 interface Car {
   brand: string;

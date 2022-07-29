@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Remote } from '../remote';
 import { NgForm } from "@angular/forms";
 import { RemoteNote } from '../remote-note';
-import { DatabaseServiceService } from '../database-service.service';
+import { DatabaseServiceService } from '../services/database-service.service';
 import { Storage } from '@capacitor/storage';
 
 @Component({

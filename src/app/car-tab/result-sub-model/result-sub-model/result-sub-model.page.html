@@ -83,6 +83,11 @@
         *ngFor="let remote of selectedSubModel.compatibleremotes"
       >
         <ion-card id="itemCardID" class="ion-activatable ripple-parent ion-no-margin" (click)="onClickItemModal(remote.tapsycode)">
+          <ion-fab vertical="top" horizontal="end">
+            <ion-fab-button size="small" color="success">
+              <ion-icon class="right-remoteclass" name="checkmark-circle-outline"></ion-icon>
+            </ion-fab-button>
+          </ion-fab>
           <ion-card-content>
             <ion-grid class="ion-no-padding">
               <ion-row>

@@ -1,16 +1,16 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ModalController, ToastController } from "@ionic/angular";
-import { CarNote } from "./car-note";
+import { CarNote } from "../car-note";
 import { NavparamService } from "./navparam.service";
-import { SelectedCar } from "./selected-car";
+import { SelectedCar } from "../selected-car";
 import { Storage } from '@capacitor/storage';
-import { Remote } from "./remote";
-import { Carmodel } from "./carmodel";
-import { RemoteShell } from "./remote-shell";
-import { Carbrand } from "./carbrand";
-import { CarModel } from "./interfaces/car-model";
-import { CarSubModel } from "./interfaces/car-sub-model";
+import { Remote } from "../remote";
+import { Carmodel } from "../carmodel";
+import { RemoteShell } from "../remote-shell";
+import { Carbrand } from "../carbrand";
+import { CarModel } from "../interfaces/car-model";
+import { CarSubModel } from "../interfaces/car-sub-model";
 
 export interface selectedData {
   selectedCategory: string;
