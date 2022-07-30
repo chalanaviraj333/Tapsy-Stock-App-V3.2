@@ -99,22 +99,6 @@ export class DatabaseServiceService {
     }
   }
 
-  // duplicate car brands to another database
-  // copyCarBrandsinDatabase() {
-  //   this.allCarBrands.forEach(carbrand => {
-  //     this.http
-  //     .post(
-  //       "https://tapsy-stock-app-v3-database-default-rtdb.firebaseio.com/all-car-brands.json",
-  //       { ...carbrand, key: null }
-  //     )
-  //     .subscribe((resData) => {
-  //       console.log(resData);
-  //     });
-  //   });
-  // }
-
-
-
   // get all car models from the database
   getAllCarModels(selectedCarBrand: string) {
     this.isFetching = true;
@@ -152,36 +136,6 @@ export class DatabaseServiceService {
       });
   }
 
-    // get all car models from the database
-    // getAllCarModelsWithoutFilter() {
-    //   this.isFetching = true;
-    //   this.allCarModels = [];
-  
-    //     this.http
-    //     .get<{ [key: string]: CarModel }>(
-    //       "https://tapsystock-a6450-default-rtdb.firebaseio.com/car-model.json"
-    //     )
-    //     .subscribe((resData) => {
-    //       for (const key in resData) {
-    //         if (resData.hasOwnProperty(key)) {
-    //             this.allCarModels.push({
-    //               key,
-    //               brand: resData[key].brand,
-    //               model: resData[key].model,
-    //               startyear: resData[key].startyear,
-    //               endyear: resData[key].endyear,
-    //               icon: resData[key].icon,
-    //               show: resData[key].show
-    //             });
-    //             this.allCarModels.sort((a, b) => (a.model > b.model ? 1 : -1));
-    //             console.log(this.allCarModels);
-    //             this.isFetching = false;
-    //           }
-    //       }
-          
-    //     });
-    // }
-
   // perform search on car model page
   perfromSearchCarModel(val: string) {
     this.searchCarModels = this.allCarModels;
@@ -213,11 +167,17 @@ export class DatabaseServiceService {
                 model: resData[key].model,
                 submodel: resData[key].submodel,
                 typeofignition: resData[key].typeofignition,
+                profile: resData[key].profile,
+                chipID: resData[key].chipID,
+                freq: resData[key].freq,
+                updatedat: resData[key].updatedat,
                 icon: resData[key].icon,
                 startyear: resData[key].startyear,
                 endyear: resData[key].endyear,
                 compatibleremotes: resData[key].compatibleremotes,
-                compatibleremoteshells: resData[key].compatibleremoteshells
+                compatibleremoteshells: resData[key].compatibleremoteshells,
+                compatibleKDRemotes: resData[key].compatibleKDRemotes,
+                compatibleXhorseRemote: resData[key].compatibleXhorseRemote
               });
               this.allCarSubModels.sort((a, b) => (a.startyear > b.startyear ? 1 : -1));
               this.isFetching = false;

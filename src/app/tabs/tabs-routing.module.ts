@@ -23,10 +23,6 @@ const routes: Routes = [
         path: 'more',
         loadChildren: () => import('../more/more.module').then( m => m.MorePageModule)
       },
-      // {
-      //   path: 'tab1/result/:selectedBrand/:selectedModel/:selectedYear/:startyear/:endyear',
-      //   loadChildren: () => import('../result/result.module').then( m => m.ResultPageModule)
-      // },
       {
         path: 'low-stock-tab',
         loadChildren: () => import('../low-stock-tab/low-stock-tab.module').then( m => m.LowStockTabPageModule)
@@ -58,6 +54,10 @@ const routes: Routes = [
       {
         path: 'car-brand-page/car-model-page/car-sub-model-page/result-sub-model/:startyear/:endyear',
         loadChildren: () => import('../car-tab/result-sub-model/result-sub-model/result-sub-model.module').then( m => m.ResultSubModelPageModule)
+      },
+      {
+        path: 'car-brand-page/car-model-page/car-sub-model-page/result-sub-model/spare-key-program',
+        loadChildren: () => import('../car-tab/spare-key-program/spare-key-program.module').then( m => m.SpareKeyProgramPageModule)
       },
       {
         path: '',
