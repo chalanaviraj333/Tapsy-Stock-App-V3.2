@@ -207,6 +207,7 @@
   
     #itemCardID {
         margin: 8px;
+        height: 100% !important;
     }
   
     .shellClass {
@@ -247,3 +248,27 @@
         padding: 10px 20px !important;
         margin-bottom: 14px;
     }
+
+  ion-card-title {
+    margin-top: 12px;
+    margin-left: 20px;
+    font-size: 20px;
+  }
+
+  .smartproclass {
+    margin-left: 20px;
+    margin-top: 10px;
+  }
+
+  .card-item-class {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .ion-image-class{
+    width: 22px;
+  }
+
+  .small-text-class{
+    font-size: 12px;
+  }

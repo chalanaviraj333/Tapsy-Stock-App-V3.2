@@ -41,7 +41,11 @@ const routes: Routes = [
   {
     path: 'add-verified-product',
     loadChildren: () => import('./car-tab/car-brands-all-modals/add-verified-product/add-verified-product/add-verified-product.module').then( m => m.AddVerifiedProductPageModule)
+  },  {
+    path: 'edit-remote-program-details',
+    loadChildren: () => import('./car-tab/edit-remote-program-details/edit-remote-program-details.module').then( m => m.EditRemoteProgramDetailsPageModule)
   },
+
 
 
 

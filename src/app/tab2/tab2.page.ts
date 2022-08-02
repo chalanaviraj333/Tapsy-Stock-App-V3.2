@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { IonContent, IonSearchbar } from "@ionic/angular";
 import { DatabaseServiceTabTwoService } from "../database-service-tab-two.service";
 import { ModalserviceService } from "../modalservice.service";
-import { Remote } from "../remote";
+import { Remote } from "../interfaces/remote";
 
 @Component({
   selector: "app-tab2",

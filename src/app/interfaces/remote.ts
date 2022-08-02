@@ -1,5 +1,5 @@
-import { Car } from './car';
-import { RemoteNote } from './remote-note';
+import { Car } from '../car';
+import { RemoteNote } from '../remote-note';
 
 export interface Remote {
   key: string;

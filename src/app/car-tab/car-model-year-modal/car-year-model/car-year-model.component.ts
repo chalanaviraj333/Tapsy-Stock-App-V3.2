@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavparamService } from 'src/app/services/navparam.service';
-import { Remote } from 'src/app/remote';
+import { Remote } from 'src/app/interfaces/remote';
 
 interface Year {
   modelyear: number;

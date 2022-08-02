@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="closeButtonClass" (click)="_onClickDismiss()">
+        <ion-icon slot="icon-only" color="danger" name="close-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>Add KD/Xhorse Remote</ion-card-header>
+  </ion-card>
+  <form #f="ngForm" (ngSubmit)="onSubmitNext(f)">
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <ion-list>
+            <ion-item>
+              <ion-select interface="action-sheet" value="kdremote" placeholder="Select KD or Xhorse">
+                <ion-select-option value="kdremote">KD Remote</ion-select-option>
+                <ion-select-option value="xhorseremote">Xhorse Remote</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button style="margin-top: 12px; margin-left: 20px;" (click)="photoUploadService.addNewToGallery()" [disabled]="photoUploadService.uploadphotobutton">
+            <ion-icon slot="icon-only" name="camera-outline"></ion-icon> Upload Photo
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+
+</ion-content>

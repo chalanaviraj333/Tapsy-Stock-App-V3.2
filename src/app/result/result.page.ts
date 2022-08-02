@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute } from "@angular/router";
-import { Remote } from "../remote";
+import { Remote } from "../interfaces/remote";
 import { ModalserviceService } from "../modalservice.service";
 import { RemoteShell } from "../remote-shell"
 import { SelectedCar } from "../selected-car";

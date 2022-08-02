@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Remote } from '../remote';
+import { Remote } from '../interfaces/remote';
 import { NgForm } from "@angular/forms";
 import { RemoteNote } from '../remote-note';
 import { DatabaseServiceService } from '../services/database-service.service';

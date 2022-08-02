@@ -3,7 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { ActivatedRoute } from "@angular/router";
 import { IonRouterOutlet } from "@ionic/angular";
 import { SelectedCar } from "src/app/selected-car";
-import { Remote } from "src/app/remote";
+import { Remote } from "src/app/interfaces/remote";
 import { RemoteShell } from "src/app/remote-shell";
 import { ModalserviceService } from "src/app/modalservice.service";
 import { DatabaseServiceService } from "src/app/services/database-service.service";

@@ -5,7 +5,7 @@ import { CarNote } from "../car-note";
 import { NavparamService } from "./navparam.service";
 import { SelectedCar } from "../selected-car";
 import { Storage } from '@capacitor/storage';
-import { Remote } from "../remote";
+import { Remote } from "../interfaces/remote";
 import { Carmodel } from "../carmodel";
 import { RemoteShell } from "../remote-shell";
 import { Carbrand } from "../carbrand";

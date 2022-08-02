@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { AddnotesPage } from './addnotes/addnotes.page';
 import { AddVerifiedProductPage } from './car-tab/car-brands-all-modals/add-verified-product/add-verified-product/add-verified-product.page';
+import { EditRemoteProgramDetailsPage } from './car-tab/edit-remote-program-details/edit-remote-program-details.page';
 import { FilterPage } from './filter/filter.page';
 import { FiltertabthreePagePage } from './filtertabthree-page/filtertabthree-page.page';
 import { FiltertabtwopagePage } from './filtertabtwopage/filtertabtwopage.page';
 import { GarageRemote } from './interfaces/garage-remote';
 import { LowStockModalPage } from './low-stock-modal/low-stock-modal.page';
-import { Remote } from './remote';
+import { Remote } from './interfaces/remote';
 import { RemoteShell } from './remote-shell';
 import { RemotedetailsmodalPage } from './remotedetailsmodal/remotedetailsmodal.page';
 import { SelectedCar } from './selected-car';
@@ -118,6 +119,18 @@ export class ModalserviceService {
         "buttontype": buttontype
       },
       cssClass: 'view-Remote-Details-class',
+      swipeToClose: true,
+    });
+    return await modal.present();
+  }
+
+ async viewEditCarProgramDetails() {
+    const modal = await this.modalController.create({
+      component: EditRemoteProgramDetailsPage,
+      componentProps: {
+        // "selectedRemote": selectedRemote
+      },
+      cssClass: 'view-edit-remote-program-page-class',
       swipeToClose: true,
     });
     return await modal.present();

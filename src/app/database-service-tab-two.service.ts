@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { selectedData } from './services/database-service.service';
-import { Remote } from './remote';
+import { Remote } from './interfaces/remote';
 
 @Injectable({
   providedIn: 'root'
