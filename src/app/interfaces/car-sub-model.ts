@@ -2,6 +2,7 @@ import { Remote } from "./remote";
 import { RemoteShell } from "../remote-shell";
 import { KdRemote } from "./kd-remote";
 import { XhorseRemote } from "./xhorse-remote";
+import { WorkOnProducts } from "./work-on-products";
 
 export interface CarSubModel {
     key: string;
@@ -16,9 +17,9 @@ export interface CarSubModel {
     icon: string;
     startyear: number;
     endyear: number;
-    compatibleremotes: Array<Remote>;
-    compatibleremoteshells: Array<RemoteShell>;
-    compatibleKDRemotes: Array<KdRemote>;
-    compatibleXhorseRemote: Array<XhorseRemote>;
+    compatibleremotes: Array<WorkOnProducts>;
+    compatibleremoteshells: Array<WorkOnProducts>;
+    compatibleKDRemotes: Array<WorkOnProducts>;
+    compatibleXhorseRemote: Array<WorkOnProducts>;
 
 }

@@ -5,10 +5,29 @@
 </ion-buttons>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let carproduct of this.databaseService.byBrandBasedProducts" (click)="onClickProduct(carproduct)">
+  <ion-card class="ion-no-margin" style="padding: 10px;">
+    <ion-card-header>-Select Tested Year</ion-card-header>
+    <ion-button size="small" *ngFor="let caryear of this.yearslist" [ngClass]="{'selectedItemClass' : caryear.selected == true}" (click)="onClickyear(caryear)">
+      {{caryear.year}}
+    </ion-button>
+  </ion-card>
+
+  <ion-card color="dark" class="ion-no-margin" style="padding: 10px;">
+    <ion-card-header>-Select Worked Key</ion-card-header>
+    <ion-button size="medium" *ngFor="let carproduct of this.databaseService.byBrandBasedProducts" [ngClass]="{'selectedItemClass' : carproduct.selected == true}" (click)="onClickProduct(carproduct)">
       {{carproduct.shell}}{{carproduct.boxnumber}}
-    </ion-item>
-  </ion-list>
+    </ion-button>
+  </ion-card>
 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" color="success" (click)="onClickDataSave()">
+      <ion-icon slot="end" name="arrow-forward-outline"></ion-icon>
+      SAVE AND UPLOAD
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
+
+

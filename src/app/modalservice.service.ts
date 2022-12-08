@@ -110,15 +110,17 @@ export class ModalserviceService {
     return await modal.present();
   }
 
-  async onClickAddVerifiedProduct(selectedsubmodelbrand: string, subModelKey: string, buttontype: string) {
+  async onClickAddVerifiedProduct(selectedsubmodelbrand: string, subModelKey: string, buttontype: string, modelstartyear: number, modelendyear: number) {
     const modal = await this.modalController.create({
       component: AddVerifiedProductPage,
       componentProps: {
         "selectedsubmodelbrand": selectedsubmodelbrand,
         "subModelKey": subModelKey,
-        "buttontype": buttontype
+        "buttontype": buttontype,
+        "modelstartyear": modelstartyear,
+        "modelendyear": modelendyear
       },
-      cssClass: 'view-Remote-Details-class',
+      cssClass: 'add-compatible-product-class',
       swipeToClose: true,
     });
     return await modal.present();

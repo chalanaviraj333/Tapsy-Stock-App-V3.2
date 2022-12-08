@@ -84,13 +84,19 @@ export class ResultSubModelPage implements OnInit {
   onCLickAddVerifiedRemote(selectedsubmodelbrand: string) {
     const subModelKey: string = this.selectedSubModel.key;
     const buttontype: string = 'addremote';
-    this.modelService.onClickAddVerifiedProduct(selectedsubmodelbrand, subModelKey, buttontype);
+    const modelstartyear: number = this.selectedSubModel.startyear;
+    const modelendyear: number = this.selectedSubModel.endyear;
+
+    this.modelService.onClickAddVerifiedProduct(selectedsubmodelbrand, subModelKey, buttontype, modelstartyear, modelendyear);
   }
 
   onClickAddVerifiedRemoteShell(selectedsubmodelbrand: string) {
     const subModelKey: string = this.selectedSubModel.key;
     const buttontype: string = 'addremoteshell';
-    this.modelService.onClickAddVerifiedProduct(selectedsubmodelbrand, subModelKey, buttontype);
+    const modelstartyear: number = this.selectedSubModel.startyear;
+    const modelendyear: number = this.selectedSubModel.endyear;
+
+    this.modelService.onClickAddVerifiedProduct(selectedsubmodelbrand, subModelKey, buttontype, modelstartyear, modelendyear);
   }
 
   onClickProgramItem(sub: string) {

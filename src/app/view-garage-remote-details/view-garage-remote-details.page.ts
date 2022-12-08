@@ -45,6 +45,7 @@ export class ViewGarageRemoteDetailsPage implements OnInit {
   _onClickPrintInstrauctions() {
     this.printer.isAvailable().then(onSuccess => {
 
+      console.log('success');
       this.printer.print(`base64://${this.newValue}`);
     },);
   }

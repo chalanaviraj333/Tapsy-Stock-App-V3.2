@@ -11,6 +11,7 @@ import { RemoteShell } from "../remote-shell";
 import { Carbrand } from "../carbrand";
 import { CarModel } from "../interfaces/car-model";
 import { CarSubModel } from "../interfaces/car-sub-model";
+import { WorkOnProducts } from "../interfaces/work-on-products";
 
 export interface selectedData {
   selectedCategory: string;
@@ -182,6 +183,10 @@ export class DatabaseServiceService {
               this.allCarSubModels.sort((a, b) => (a.startyear > b.startyear ? 1 : -1));
               this.isFetching = false;
             }
+
+            if (resData[key].compatibleremotes !== undefined) {
+              console.log(resData[key].submodel, resData[key].model)
+            }
           }
         }
 
@@ -197,7 +202,6 @@ export class DatabaseServiceService {
     // get all remotes based on car brand
     getAllProductsBasedonBrand(selectedsubmodelbrand: string, buttontype: string) {
       this.byBrandBasedProducts = []
-      console.log(buttontype)
 
       if (buttontype == 'addremote') {
         this.http
@@ -208,7 +212,7 @@ export class DatabaseServiceService {
         for (const key in resData) {
           if (resData.hasOwnProperty(key)) {
             if (resData[key].compitablebrands !== undefined && resData[key].compitablebrands.find((i) => i === selectedsubmodelbrand)){
-              this.byBrandBasedProducts.push({key, ...resData[key]});
+              this.byBrandBasedProducts.push({key, ...resData[key], selected: false});
             }
             this.byBrandBasedProducts.sort((a, b) => (a.shell > b.shell ? 1 : -1));
           }
@@ -225,7 +229,7 @@ export class DatabaseServiceService {
         for (const key in resData) {
           if (resData.hasOwnProperty(key)) {
             if (resData[key].compitablebrands !== undefined && resData[key].compitablebrands.find((i) => i === selectedsubmodelbrand)){
-              this.byBrandBasedProducts.push({key, ...resData[key]});
+              this.byBrandBasedProducts.push({key, ...resData[key], selected: false});
             }
             this.byBrandBasedProducts.sort((a, b) => (a.shell > b.shell ? 1 : -1));
           }
@@ -236,25 +240,29 @@ export class DatabaseServiceService {
     }
 
     // add verified remote to sub model
-    addVerifiedProductoSubModel(carproduct: any, subModelKey: string, buttontype: string) {
+    addVerifiedProductoSubModel(carproduct: any, selectedyear: number, subModelKey: string, buttontype: string) {
       const subModelCar : CarSubModel = this.allCarSubModels.find((i) => i.key === subModelKey);
 
       if (buttontype == 'addremote') {
         if (subModelCar.compatibleremotes == undefined) {
           subModelCar.compatibleremotes = [];
-          subModelCar.compatibleremotes.push(carproduct);
+          const compatibleProduct: WorkOnProducts = {key: carproduct.key, date: new Date(), year: selectedyear};
+          subModelCar.compatibleremotes.push(compatibleProduct);
         }
         else {
-          subModelCar.compatibleremotes.push(carproduct);
+          const compatibleProduct: WorkOnProducts = {key: carproduct.key, date: new Date(), year: selectedyear};
+          subModelCar.compatibleremotes.push(compatibleProduct);
         }
       }
       else if (buttontype == 'addremoteshell') {
         if (subModelCar.compatibleremoteshells == undefined) {
           subModelCar.compatibleremoteshells = [];
-          subModelCar.compatibleremoteshells.push(carproduct);
+          const compatibleProduct: WorkOnProducts = {key: carproduct.key, date: new Date(), year: selectedyear};
+          subModelCar.compatibleremotes.push(compatibleProduct);
         }
         else {
-          subModelCar.compatibleremoteshells.push(carproduct);
+          const compatibleProduct: WorkOnProducts = {key: carproduct.key, date: new Date(), year: selectedyear};
+          subModelCar.compatibleremotes.push(compatibleProduct);
         }
       }
       
@@ -266,6 +274,7 @@ export class DatabaseServiceService {
         .subscribe((resData) => {
           const message: string = carproduct.shell + carproduct.boxnumber;
           this.presentToastAddRemote(message);
+          console.log(resData)
         });
     }
 
